@@ -29,9 +29,14 @@ class DI extends \Deimos\DI\DI
             return $this->call('math.getRandom.getRandom', []);
         });
 
-        $this->callback('pow', function ()
+        $this->addBuildCallback('pow2', function ()
         {
-            return $this->call('math.pow.mathClass.pow', ['@nine', '@two']);
+            return $this->math()->pow()->mathClass()->pow($this->nine(), $this->two());
+        });
+
+        $this->addBuildCallback('pow1', function ()
+        {
+            return $this->call('math.pow.mathClass.pow', [$this->nine(), $this->two()]);
         });
     }
 

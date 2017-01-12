@@ -30,10 +30,10 @@ class DITest extends TestSetUp
             $this->di->math()->call('getRandom.getRandom', []),
             $this->di->random()
         );
-var_dump( $this->di->pow());die;
+
         $this->assertEquals(
             81,
-            $this->di->pow()
+            $this->di->pow1()
         );
     }
 
