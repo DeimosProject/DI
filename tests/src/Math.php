@@ -6,7 +6,7 @@ class Math
 {
 
     /**
-     * @param int  $min
+     * @param int $min
      * @param int $max
      *
      * @return int
@@ -14,7 +14,7 @@ class Math
     public function random($min = 0, $max = null)
     {
 
-        if(null === $max)
+        if (null === $max)
         {
             $max = mt_getrandmax();
         }

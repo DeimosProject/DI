@@ -14,6 +14,13 @@ class DI extends \Deimos\DI\DI
         $this->value('two', 2);
         $this->value('nine', 9);
 
+        $this->build('firstName', function ()
+        {
+            return 'Ivan';
+        });
+
+        $this->value('lastName', 'Ivanov');
+
         $this->group('math', function ()
         {
             $this->instance('getRandom', Get4::class, []);
@@ -24,20 +31,17 @@ class DI extends \Deimos\DI\DI
             });
         });
 
-        $this->addBuildCallback('random', function ()
+        $this->callback('random', function ()
         {
             return $this->call('math.getRandom.getRandom', []);
         });
 
-        $this->addBuildCallback('pow2', function ()
+        $this->value('pow', function ()
         {
-            return $this->math()->pow()->mathClass()->pow($this->nine(), $this->two());
+            return $this->call('math.pow.mathClass.pow', ['@nine', '@two']);
         });
 
-        $this->addBuildCallback('pow1', function ()
-        {
-            return $this->call('math.pow.mathClass.pow', [$this->nine(), $this->two()]);
-        });
+        $this->instance('ivan', Person::class, ['@firstName', '@lastName']);
     }
 
 }

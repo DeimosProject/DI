@@ -2,165 +2,194 @@
 
 namespace Deimos\DI;
 
-abstract class DI extends Container
+abstract class DI
 {
 
     /**
-     * @var static
+     * @var mixed[]
+     */
+    protected $storage = [];
+
+    /**
+     * @var self
      */
     protected $self;
 
     /**
-     * @var static[]
+     * Container constructor.
+     *
+     * @param bool $init
      */
-    protected static $instances;
-
-    /**
-     * DI constructor.
-     */
-    public function __construct()
+    public function __construct($init = true)
     {
         $this->self = $this;
 
-        $this->configure();
-        static::$instances[get_called_class()] = &$this->self;
-    }
-
-    /**
-     * @param $key
-     * @param $value
-     */
-    protected function value($key, $value)
-    {
-        $this->self->addValue($key, $value);
-    }
-
-    /**
-     * @param $key
-     * @param $callback
-     */
-    protected function callback($key, $callback)
-    {
-        $this->self->addCallback($key, $callback);
-    }
-
-    /**
-     * @param $key
-     * @param $callback
-     */
-    protected function build($key, $callback)
-    {
-        $this->self->addBuildCallback($key, $callback);
-    }
-
-    /**
-     * @param $key
-     * @param $class
-     * @param $arguments
-     */
-    protected function instance($key, $class, $arguments)
-    {
-        $this->build($key, function () use ($class, $arguments)
+        if ($init)
         {
-            return $this->create($class, $arguments);
-        });
+            $this->configure();
+        }
     }
 
     /**
-     * @param $key
-     * @param $callback
-     */
-    protected function group($key, $callback)
-    {
-        $path = $this->self->selfPath($key);
-
-        $container = new Group($path);
-        $previous  = $this->self;
-
-        $this->self = $container;
-        call_user_func($callback);
-        $this->self = $previous;
-
-        $this->addValue($key, $container);
-    }
-
-    /**
-     * @param $class
-     * @param $arguments
+     * @param string $name
+     * @param array  $arguments
      *
-     * @return object
+     * @return mixed
      */
-    protected function create($class, array $arguments = null)
+    public function call($name, array $arguments = [])
     {
-        foreach ($arguments as $key => $value)
+        $path = $this->path($name);
+        $row  = $this->getFirst($path);
+        $last = array_pop($path);
+
+        if (!empty($path))
         {
-            if (is_string($value) && $value{0} === '@')
-            {
-                $arguments[$key] = $this->get(substr($value, 1));
-            }
+            $this->steps($row, $path);
         }
 
-        return Reflection::classInit($class, $arguments);
+        $isCallable = is_callable($row);
+
+        if (!$isCallable && !$last)
+        {
+            return $row;
+        }
+
+        return call_user_func_array(
+            $isCallable ? $row : [$row, $last],
+            (new Argument($this, $arguments))->get()
+        );
+    }
+
+    /**
+     * @param string   $name
+     * @param callable $callback
+     */
+    protected function group($name, callable $callback)
+    {
+        list ($self, $this->self) = [$this->self, new Group()];
+        $self->storage[$name] = $this->self;
+        $callback();
+        $this->self = $self;
+    }
+
+    /**
+     * @param mixed $row
+     * @param array $keys
+     */
+    protected function steps(&$row, array $keys)
+    {
+        foreach ($keys as $name)
+        {
+            $row = $row->{$name}();
+        }
+    }
+
+    protected function storage($name)
+    {
+        if ($this->self->storage[$name] instanceof Instance)
+        {
+            /**
+             * @var $instance Instance
+             */
+            $instance = $this->self->storage[$name];
+
+            $value = $instance->get();
+            unset($this->self->storage[$name]);
+
+            $this->self->storage[$name] = $value;
+        }
+
+        return $this->self->storage[$name];
+    }
+
+    protected function build($name, callable $callback)
+    {
+        $this->value($name, $callback);
+    }
+
+    protected function path($name)
+    {
+        return explode('.', $name);
+    }
+
+    protected function getFirst(&$path)
+    {
+        $name = array_shift($path);
+
+        return $this->storage($name);
+    }
+
+    public function get($name)
+    {
+        $path = $this->path($name);
+        $row  = $this->getFirst($path);
+        $last = array_pop($path);
+
+        if (!empty($path))
+        {
+            $this->steps($row, $path);
+        }
+
+        if ($last && is_object($row))
+        {
+            if ($row instanceof self)
+            {
+                return $row->self->storage[$last];
+            }
+
+            return $row->{$last}();
+        }
+
+        return $row;
     }
 
     /**
      * @param $name
-     * @param $params
+     * @param $arguments
      *
-     * @return $this|callable|mixed
-     *
-     * @throws \InvalidArgumentException
+     * @return mixed
      */
-    public function __call($name, $params)
+    public function __call($name, array $arguments = [])
     {
-        if ($name === 'get')
-        {
-            if (empty($params))
-            {
-                return static::sharedInstance();
-            }
+        return $this->call($name, $arguments);
+    }
 
-            return $this->processGet($params[0]);
-        }
+    /**
+     * @param       $name
+     * @param       $row
+     * @param array $arguments
+     */
+    protected function value($name, $row, array $arguments = [])
+    {
+        $argument  = new Argument($this, $arguments);
+        $arguments = $argument->get();
+        unset($argument);
 
-        if ($name === 'call')
-        {
-            return $this->processCall($params[0], $params[1]);
-        }
-
-        return $this->processCall($name, $params);
+        $this->self->storage[$name] =
+            is_callable($row) ?
+                call_user_func_array($row, $arguments) : $row;
     }
 
     /**
      * @param $name
-     * @param $params
-     *
-     * @return mixed
-     * @throws \InvalidArgumentException
+     * @param $callback
      */
-    public static function __callStatic($name, $params)
+    protected function callback($name, $callback)
     {
-        return call_user_func([static::sharedInstance(), '__call'], $name, $params);
+        $this->self->storage[$name] = $callback;
+    }
+
+    protected function instance($name, $class, array $arguments = [])
+    {
+        $this->self->storage[$name] = new Instance(
+            $this,
+            $class,
+            new Argument($this, $arguments)
+        );
     }
 
     /**
-     * @return mixed
-     * @throws \InvalidArgumentException
-     */
-    public static function sharedInstance()
-    {
-        $class = get_called_class();
-
-        if (!isset(static::$instances[$class]))
-        {
-            throw new \InvalidArgumentException('This container has not been constructed yet');
-        }
-
-        return static::$instances[$class];
-    }
-
-    /**
-     * configure DI
+     * configure
      */
     abstract protected function configure();
 
