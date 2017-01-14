@@ -2,6 +2,7 @@
 
 namespace Test;
 
+use Deimos\DI\Argument;
 use Deimos\DI\ContainerEmpty;
 use Deimos\DI\Group;
 use DeimosTest\Person;
@@ -68,6 +69,9 @@ class DITest extends TestSetUp
         $this->assertInstanceOf(Person::class, $this->di->get('ivan'));
 
         $this->di->call('ivan.setAge', ['@nine']);
+
+        $this->assertEquals($this->di->nine(), 9);
+
         $this->assertEquals($this->di->get('ivan.age'), $this->di->nine());
         $this->assertEquals($this->di->get('ivan.age'), $this->di->get('nine'));
 
@@ -75,6 +79,24 @@ class DITest extends TestSetUp
         $this->assertEquals($this->di->get('ivan.age'), 34);
 
         $this->assertEquals($this->di->ivan()->age(), 34);
+    }
+
+    public function testTree()
+    {
+        // group
+        $this->assertInstanceOf(Group::class, $this->di->get('l1'));
+        $this->assertInstanceOf(Group::class, $this->di->get('l1.l2'));
+        $this->assertInstanceOf(Group::class, $this->di->get('l1.l2.l3'));
+        $this->assertInstanceOf(Group::class, $this->di->get('l1.l2.l3.l4'));
+        $this->assertInstanceOf(Group::class, $this->di->get('l1.l2.l3.l4.l5'));
+
+        // argument
+        $this->assertInstanceOf(Argument::class, $this->di->get('l1.l2.l3.l4.l5.argument'));
+        $this->assertCount(2, $this->di->call('l1.l2.l3.l4.l5.argument.get'));
+
+        list($two, $nine) = $this->di->get('l1.l2.l3.l4.l5.argument.get');
+        $this->assertNotEquals($two, $this->di->get('two'));
+        $this->assertNotEquals($nine, $this->di->get('nine'));
     }
 
 }

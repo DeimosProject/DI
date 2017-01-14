@@ -84,24 +84,6 @@ abstract class DI
         }
     }
 
-    protected function storage($name)
-    {
-        if ($this->self->storage[$name] instanceof Instance)
-        {
-            /**
-             * @var $instance Instance
-             */
-            $instance = $this->self->storage[$name];
-
-            $value = $instance->get();
-            unset($this->self->storage[$name]);
-
-            $this->self->storage[$name] = $value;
-        }
-
-        return $this->self->storage[$name];
-    }
-
     protected function build($name, callable $callback)
     {
         $this->value($name, $callback);
@@ -114,9 +96,10 @@ abstract class DI
 
     protected function getFirst(&$path)
     {
-        $name = array_shift($path);
+        $name   = array_shift($path);
+        $object = $this->self->storage[$name];
 
-        return $this->storage($name);
+        return $this->getInstance($object);
     }
 
     public function get($name)
@@ -134,10 +117,20 @@ abstract class DI
         {
             if ($row instanceof self)
             {
-                return $row->self->storage[$last];
+                return $this->getInstance($row->self->storage[$last]);
             }
 
-            return $row->{$last}();
+            $row = $row->{$last}();
+        }
+
+        return $this->getInstance($row);
+    }
+
+    protected function getInstance($row)
+    {
+        if ($row instanceof Instance)
+        {
+            return $row->get();
         }
 
         return $row;
