@@ -30,11 +30,6 @@
 
 						</li>
 							</ul></li>
-				<li>
-					<a href="namespace-PHP.html">
-						PHP					</a>
-
-						</li>
 			</ul>
 		</div>
 
@@ -44,10 +39,11 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Deimos.DI.Container.html">Container</a></li>
+				<li><a href="class-Deimos.DI.Argument.html">Argument</a></li>
+				<li><a href="class-Deimos.DI.ContainerEmpty.html">ContainerEmpty</a></li>
 				<li class="active"><a href="class-Deimos.DI.DI.html">DI</a></li>
 				<li><a href="class-Deimos.DI.Group.html">Group</a></li>
-				<li><a href="class-Deimos.DI.Reflection.html">Reflection</a></li>
+				<li><a href="class-Deimos.DI.Instance.html">Instance</a></li>
 			</ul>
 
 
@@ -103,23 +99,17 @@
 
 
 
-	<dl class="tree">
-		<dd style="padding-left:0px">
-			<a href="class-Deimos.DI.Container.html"><span>Deimos\DI\Container</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by">
-<b><span>Deimos\DI\DI</span></b>			
-			
-			
-		</dd>
-	</dl>
 
 
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Deimos.DI.ContainerEmpty.html">Deimos\DI\ContainerEmpty</a>
+	</div>
 
+	<div>
+		<h4>Indirect known subclasses</h4>
+			<a href="class-Deimos.DI.Group.html">Deimos\DI\Group</a>
+	</div>
 
 
 
@@ -131,7 +121,7 @@
 		<b>Namespace:</b> <a href="namespace-Deimos.html">Deimos</a>\<a href="namespace-Deimos.DI.html">DI</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Deimos.DI.DI.html#5-167" title="Go to source code">DI/DI.php</a>
+			<b>Located at</b> <a href="source-class-Deimos.DI.DI.html#5-196" title="Go to source code">DI/DI.php</a>
 		<br>
 	</div>
 
@@ -151,17 +141,328 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Deimos.DI.DI.html#18-27" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-Deimos.DI.DI.html#18-31" title="Go to source code">__construct</a>( <span>boolean <var>$init</var> = <span class="php-keyword1">true</span></span> )</code>
 
 		<div class="description short">
-			<p>DI constructor.</p>
+			<p>Container constructor.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>DI constructor.</p>
+			<p>Container constructor.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$init</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="call" id="_call">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_call">#</a>
+		<code><a href="source-class-Deimos.DI.DI.html#33-61" title="Go to source code">call</a>( <span>string <var>$name</var></span>, <span>array <var>$arguments</var> = []</span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+					<dt><var>$arguments</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="group" id="_group">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_group">#</a>
+		<code><a href="source-class-Deimos.DI.DI.html#63-73" title="Go to source code">group</a>( <span>string <var>$name</var></span>, <span>callable <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+					<dt><var>$callback</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="steps" id="_steps">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_steps">#</a>
+		<code><a href="source-class-Deimos.DI.DI.html#75-85" title="Go to source code">steps</a>( <span>mixed <var>&amp; $row</var></span>, <span>array <var>$keys</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$row</var></dt>
+					<dd></dd>
+					<dt><var>$keys</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="storage" id="_storage">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_storage">#</a>
+		<code><a href="source-class-Deimos.DI.DI.html#87-103" title="Go to source code">storage</a>( <span> <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="build" id="_build">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_build">#</a>
+		<code><a href="source-class-Deimos.DI.DI.html#105-108" title="Go to source code">build</a>( <span> <var>$name</var></span>, <span>callable <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="path" id="_path">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_path">#</a>
+		<code><a href="source-class-Deimos.DI.DI.html#110-113" title="Go to source code">path</a>( <span> <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFirst" id="_getFirst">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFirst">#</a>
+		<code><a href="source-class-Deimos.DI.DI.html#115-120" title="Go to source code">getFirst</a>( <span> <var>&amp; $path</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-Deimos.DI.DI.html#122-144" title="Go to source code">get</a>( <span> <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__call" id="___call">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___call">#</a>
+		<code><a href="source-class-Deimos.DI.DI.html#146-155" title="Go to source code">__call</a>( <span> <var>$name</var></span>, <span>array <var>$arguments</var> = []</span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+					<dt><var>$arguments</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
 
 
 
@@ -181,7 +482,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_value">#</a>
-		<code><a href="source-class-Deimos.DI.DI.html#29-36" title="Go to source code">value</a>( <span> <var>$key</var></span>, <span> <var>$value</var></span> )</code>
+		<code><a href="source-class-Deimos.DI.DI.html#157-171" title="Go to source code">value</a>( <span> <var>$name</var></span>, <span> <var>$row</var></span>, <span>array <var>$arguments</var> = []</span> )</code>
 
 		<div class="description short">
 			
@@ -193,9 +494,11 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$key</var></dt>
+					<dt><var>$name</var></dt>
 					<dd></dd>
-					<dt><var>$value</var></dt>
+					<dt><var>$row</var></dt>
+					<dd></dd>
+					<dt><var>$arguments</var></dt>
 					<dd></dd>
 				</dl></div>
 
@@ -218,7 +521,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_callback">#</a>
-		<code><a href="source-class-Deimos.DI.DI.html#38-45" title="Go to source code">callback</a>( <span> <var>$key</var></span>, <span> <var>$callback</var></span> )</code>
+		<code><a href="source-class-Deimos.DI.DI.html#173-180" title="Go to source code">callback</a>( <span> <var>$name</var></span>, <span> <var>$callback</var></span> )</code>
 
 		<div class="description short">
 			
@@ -230,44 +533,7 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$key</var></dt>
-					<dd></dd>
-					<dt><var>$callback</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="build" id="_build">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_build">#</a>
-		<code><a href="source-class-Deimos.DI.DI.html#47-54" title="Go to source code">build</a>( <span> <var>$key</var></span>, <span> <var>$callback</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$key</var></dt>
+					<dt><var>$name</var></dt>
 					<dd></dd>
 					<dt><var>$callback</var></dt>
 					<dd></dd>
@@ -292,214 +558,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_instance">#</a>
-		<code><a href="source-class-Deimos.DI.DI.html#56-67" title="Go to source code">instance</a>( <span> <var>$key</var></span>, <span> <var>$class</var></span>, <span> <var>$arguments</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$key</var></dt>
-					<dd></dd>
-					<dt><var>$class</var></dt>
-					<dd></dd>
-					<dt><var>$arguments</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="group" id="_group">
-
-		<td class="attributes"><code>
-			 protected 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_group">#</a>
-		<code><a href="source-class-Deimos.DI.DI.html#69-85" title="Go to source code">group</a>( <span> <var>$key</var></span>, <span> <var>$callback</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$key</var></dt>
-					<dd></dd>
-					<dt><var>$callback</var></dt>
-					<dd></dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="create" id="_create">
-
-		<td class="attributes"><code>
-			 protected 
-
-			object
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-Deimos.DI.DI.html#87-104" title="Go to source code">create</a>( <span> <var>$class</var></span>, <span>array <var>$arguments</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$class</var></dt>
-					<dd></dd>
-					<dt><var>$arguments</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					object
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="__call" id="___call">
-
-		<td class="attributes"><code>
-			 public 
-
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___call">#</a>
-		<code><a href="source-class-Deimos.DI.DI.html#106-132" title="Go to source code">__call</a>( <span> <var>$name</var></span>, <span> <var>$params</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$name</var></dt>
-					<dd></dd>
-					<dt><var>$params</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<br>$this|callable|mixed
-				</div>
-
-				<h4>Throws</h4>
-				<div class="list">
-					<code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code>
-				</div>
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="__callStatic" id="___callStatic">
-
-		<td class="attributes"><code>
-			 public static
-
-			mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___callStatic">#</a>
-		<code><a href="source-class-Deimos.DI.DI.html#134-144" title="Go to source code">__callStatic</a>( <span> <var>$name</var></span>, <span> <var>$params</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$name</var></dt>
-					<dd></dd>
-					<dt><var>$params</var></dt>
-					<dd></dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					mixed
-				</div>
-
-				<h4>Throws</h4>
-				<div class="list">
-					<code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code>
-				</div>
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="sharedInstance" id="_sharedInstance">
-
-		<td class="attributes"><code>
-			 public static
-
-			mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_sharedInstance">#</a>
-		<code><a href="source-class-Deimos.DI.DI.html#146-160" title="Go to source code">sharedInstance</a>( )</code>
+		<code><a href="source-class-Deimos.DI.DI.html#182-189" title="Go to source code">instance</a>( <span> <var>$name</var></span>, <span> <var>$class</var></span>, <span>array <var>$arguments</var> = []</span> )</code>
 
 		<div class="description short">
 			
@@ -510,15 +569,7 @@
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					mixed
-				</div>
 
-				<h4>Throws</h4>
-				<div class="list">
-					<code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code>
-				</div>
 
 
 
@@ -537,14 +588,14 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_configure">#</a>
-		<code><a href="source-class-Deimos.DI.DI.html#162-165" title="Go to source code">configure</a>( )</code>
+		<code><a href="source-class-Deimos.DI.DI.html#191-194" title="Go to source code">configure</a>( )</code>
 
 		<div class="description short">
-			<p>configure DI</p>
+			<p>configure</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>configure DI</p>
+			<p>configure</p>
 
 
 
@@ -557,24 +608,6 @@
 	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Deimos.DI.Container.html#methods">Deimos\DI\Container</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Deimos.DI.Container.html#_addBuildCallback">addBuildCallback()</a>, 
-			<a href="class-Deimos.DI.Container.html#_addCallback">addCallback()</a>, 
-			<a href="class-Deimos.DI.Container.html#_addValue">addValue()</a>, 
-			<a href="class-Deimos.DI.Container.html#_buildCallback">buildCallback()</a>, 
-			<a href="class-Deimos.DI.Container.html#_getBySplitPath">getBySplitPath()</a>, 
-			<a href="class-Deimos.DI.Container.html#_getValue">getValue()</a>, 
-			<a href="class-Deimos.DI.Container.html#_processCall">processCall()</a>, 
-			<a href="class-Deimos.DI.Container.html#_processGet">processGet()</a>, 
-			<a href="class-Deimos.DI.Container.html#_selfPath">selfPath()</a>, 
-			<a href="class-Deimos.DI.Container.html#_splitPath">splitPath()</a>, 
-			<a href="class-Deimos.DI.Container.html#_steps">steps()</a>
-		</code></td>
-	</tr>
-	</table>
 
 
 
@@ -588,14 +621,39 @@
 
 	<table class="summary properties" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="self" id="$self">
+	<tr data-order="storage" id="$storage">
 		<td class="attributes"><code>
 			protected  
-			static
+			mixed[]
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Deimos.DI.DI.html#8-11" title="Go to source code"><var>$self</var></a>
+				<a href="source-class-Deimos.DI.DI.html#8-11" title="Go to source code"><var>$storage</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$storage" class="anchor">#</a>
+				<code>[]</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="self" id="$self">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Deimos.DI.DI.html">Deimos\DI\DI</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Deimos.DI.DI.html#13-16" title="Go to source code"><var>$self</var></a>
 
 			<div class="description short">
 				
@@ -613,43 +671,8 @@
 			</div>
 		</td>
 	</tr>
-	<tr data-order="instances" id="$instances">
-		<td class="attributes"><code>
-			protected static 
-			static[]
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-Deimos.DI.DI.html#13-16" title="Go to source code"><var>$instances</var></a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</td>
-		<td class="value">
-			<div>
-				<a href="#$instances" class="anchor">#</a>
-				<code></code>
-			</div>
-		</td>
-	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-Deimos.DI.Container.html#properties">Deimos\DI\Container</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Deimos.DI.Container.html#$buildCallbacks"><var>$buildCallbacks</var></a>, 
-			<a href="class-Deimos.DI.Container.html#$callbacks"><var>$callbacks</var></a>, 
-			<a href="class-Deimos.DI.Container.html#$values"><var>$values</var></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 

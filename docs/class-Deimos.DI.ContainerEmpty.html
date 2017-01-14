@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Deimos\DI\Reflection</title>
+	<title>Class Deimos\DI\ContainerEmpty</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -30,11 +30,6 @@
 
 						</li>
 							</ul></li>
-				<li>
-					<a href="namespace-PHP.html">
-						PHP					</a>
-
-						</li>
 			</ul>
 		</div>
 
@@ -44,10 +39,11 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Deimos.DI.Container.html">Container</a></li>
+				<li><a href="class-Deimos.DI.Argument.html">Argument</a></li>
+				<li class="active"><a href="class-Deimos.DI.ContainerEmpty.html">ContainerEmpty</a></li>
 				<li><a href="class-Deimos.DI.DI.html">DI</a></li>
 				<li><a href="class-Deimos.DI.Group.html">Group</a></li>
-				<li class="active"><a href="class-Deimos.DI.Reflection.html">Reflection</a></li>
+				<li><a href="class-Deimos.DI.Instance.html">Instance</a></li>
 			</ul>
 
 
@@ -99,12 +95,30 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Reflection</h1>
+	<h1>Class ContainerEmpty</h1>
 
 
 
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Deimos.DI.DI.html"><span>Deimos\DI\DI</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Deimos\DI\ContainerEmpty</span></b>			
+			
+			
+		</dd>
+	</dl>
 
 
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Deimos.DI.Group.html">Deimos\DI\Group</a>
+	</div>
 
 
 
@@ -117,7 +131,7 @@
 		<b>Namespace:</b> <a href="namespace-Deimos.html">Deimos</a>\<a href="namespace-Deimos.DI.html">DI</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Deimos.DI.Reflection.html#5-21" title="Go to source code">DI/Reflection.php</a>
+			<b>Located at</b> <a href="source-class-Deimos.DI.ContainerEmpty.html#5-16" title="Go to source code">DI/ContainerEmpty.php</a>
 		<br>
 	</div>
 
@@ -125,46 +139,56 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="classInit" id="_classInit">
+	<tr data-order="configure" id="_configure">
 
 		<td class="attributes"><code>
-			 public static
+			 public 
 
-			object
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_classInit">#</a>
-		<code><a href="source-class-Deimos.DI.Reflection.html#8-19" title="Go to source code">classInit</a>( <span> <var>$class</var></span>, <span> <var>$arguments</var></span> )</code>
+		<a class="anchor" href="#_configure">#</a>
+		<code><a href="source-class-Deimos.DI.ContainerEmpty.html#8-14" title="Go to source code">configure</a>( )</code>
 
 		<div class="description short">
-			
+			<p>configure container</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>configure container</p>
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$class</var></dt>
-					<dd></dd>
-					<dt><var>$arguments</var></dt>
-					<dd></dd>
-				</dl></div>
 
-				<h4>Returns</h4>
-				<div class="list">
-					object
-				</div>
 
 
 
 
 		</div>
 		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Deimos.DI.DI.html#methods">Deimos\DI\DI</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Deimos.DI.DI.html#___call">__call()</a>, 
+			<a href="class-Deimos.DI.DI.html#___construct">__construct()</a>, 
+			<a href="class-Deimos.DI.DI.html#_build">build()</a>, 
+			<a href="class-Deimos.DI.DI.html#_call">call()</a>, 
+			<a href="class-Deimos.DI.DI.html#_callback">callback()</a>, 
+			<a href="class-Deimos.DI.DI.html#_get">get()</a>, 
+			<a href="class-Deimos.DI.DI.html#_getFirst">getFirst()</a>, 
+			<a href="class-Deimos.DI.DI.html#_group">group()</a>, 
+			<a href="class-Deimos.DI.DI.html#_instance">instance()</a>, 
+			<a href="class-Deimos.DI.DI.html#_path">path()</a>, 
+			<a href="class-Deimos.DI.DI.html#_steps">steps()</a>, 
+			<a href="class-Deimos.DI.DI.html#_storage">storage()</a>, 
+			<a href="class-Deimos.DI.DI.html#_value">value()</a>
+		</code></td>
 	</tr>
 	</table>
 
@@ -179,7 +203,15 @@
 
 
 
-
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Deimos.DI.DI.html#properties">Deimos\DI\DI</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Deimos.DI.DI.html#$self"><var>$self</var></a>, 
+			<a href="class-Deimos.DI.DI.html#$storage"><var>$storage</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 

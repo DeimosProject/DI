@@ -64,14 +64,25 @@ class Obj extends Deimos\DI\DI
             $this->instance('lcmClass', LCMMath::class, ['@math.gcdClass']);
         });
 
-        $this->addBuildCallback('gcd', function ()
+        $this->value('gcd', function ()
         {
-            return $this->call('math.gcdClass.call', [$this->a(), $this->b()]);
+            return $this->call('math.gcdClass.call', ['@a', $this->b()]);
         });
 
-        $this->addBuildCallback('lcm', function ()
+        $this->value('lcm', function ()
         {
-            return $this->call('math.lcmClass.call', [$this->a(), $this->b()]);
+            return $this->call('math.lcmClass.call', [$this->a(), '@b']);
+        });
+
+        $this->callback('substr', 'mb_substr');
+        $this->callback('length', function ($object)
+        {
+            if (is_array($object))
+            {
+                return count($object);
+            }
+
+            return mb_strlen($object);
         });
     }
 }
