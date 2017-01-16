@@ -5,6 +5,7 @@ namespace Test;
 use Deimos\DI\Argument;
 use Deimos\DI\ContainerEmpty;
 use Deimos\DI\Group;
+use DeimosTest\DI;
 use DeimosTest\Person;
 use DeimosTest\TestSetUp;
 
@@ -97,6 +98,11 @@ class DITest extends TestSetUp
         list($two, $nine) = $this->di->get('l1.l2.l3.l4.l5.argument.get');
         $this->assertNotEquals($two, $this->di->get('two'));
         $this->assertNotEquals($nine, $this->di->get('nine'));
+    }
+
+    public function testStatic()
+    {
+        $this->assertInstanceOf(Group::class, DI::l1());
     }
 
 }
