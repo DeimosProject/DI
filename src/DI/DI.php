@@ -16,6 +16,11 @@ abstract class DI
     protected $self;
 
     /**
+     * @var self[]
+     */
+    protected static $instances = [];
+
+    /**
      * Container constructor.
      *
      * @param bool $init
@@ -28,6 +33,19 @@ abstract class DI
         {
             $this->configure();
         }
+
+        if (!isset(self::$instances[static::class]))
+        {
+            self::$instances[static::class] = $this;
+        }
+    }
+
+    /**
+     * @return DI
+     */
+    protected static function requireInstance()
+    {
+        return self::$instances[static::class];
     }
 
     /**
@@ -145,6 +163,17 @@ abstract class DI
     public function __call($name, array $arguments = [])
     {
         return $this->call($name, $arguments);
+    }
+
+    /**
+     * @param $name
+     * @param $arguments
+     *
+     * @return mixed
+     */
+    public static function __callStatic($name, $arguments)
+    {
+        return static::requireInstance()->call($name, $arguments);
     }
 
     /**
