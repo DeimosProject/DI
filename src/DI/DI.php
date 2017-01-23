@@ -50,11 +50,10 @@ abstract class DI
 
     /**
      * @param string $name
-     * @param array  $arguments
-     *
-     * @return mixed
+     * @param        $row
+     * @param        $last
      */
-    public function call($name, array $arguments = [])
+    protected function initSteps($name, &$row, &$last)
     {
         $path = $this->path($name);
         $row  = $this->getFirst($path);
@@ -64,7 +63,17 @@ abstract class DI
         {
             $this->steps($row, $path);
         }
+    }
 
+    /**
+     * @param string $name
+     * @param array  $arguments
+     *
+     * @return mixed
+     */
+    public function call($name, array $arguments = [])
+    {
+        $this->initSteps($name, $row, $last);
         $isCallable = is_callable($row);
 
         if (!$isCallable && !$last)
@@ -122,15 +131,7 @@ abstract class DI
 
     public function get($name)
     {
-        $path = $this->path($name);
-        $row  = $this->getFirst($path);
-        $last = array_pop($path);
-
-        if (!empty($path))
-        {
-            $this->steps($row, $path);
-        }
-
+        $this->initSteps($name, $row, $last);
         if ($last && is_object($row))
         {
             if ($row instanceof self)
