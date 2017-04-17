@@ -38,7 +38,7 @@ class Argument
         {
             $arguments[$key] = $argument;
 
-            if (is_string($argument) && $argument{0} === '@')
+            if (!empty($argument) && is_string($argument) && $argument{0} === '@')
             {
                 $argument = substr($argument, 1);
 
